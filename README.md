@@ -114,7 +114,7 @@ Triggered weekly and monthly.
 └── weekly-analysis.n8n.json  
 
 /docs  
-└── report-samples/  
+└── report-samples  
     ├── daily-summary.md  
     └── weekly-analysis.md  
 
