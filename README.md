@@ -108,9 +108,15 @@ Triggered weekly and monthly.
 
 ## 📂 Repository Structure
 
-/workflows ├── immediate-feedback.n8n.json ├── daily-summary.n8n.json └── weekly-analysis.n8n.json
+/workflows
+├── immediate-feedback.n8n.json
+├── daily-summary.n8n.json
+└── weekly-analysis.n8n.json
 
-/docs └── report-samples/ ├── daily-summary.md └── weekly-analysis.md
+/docs
+└── report-samples/
+    ├── daily-summary.md
+    └── weekly-analysis.md
 
 ---
 
