@@ -1,0 +1,263 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 18
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -192,
+        1172
+      ],
+      "id": "f2d003c7-a4cc-47d5-a938-a44956f90fa5",
+      "name": "Schedule Trigger (Daily)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get today's date in the \"Africa/Lagos\" timezone.\nconst today = new Date().toLocaleDateString('en-CA', { timeZone: 'Africa/Lagos' });\n\nconst allItems = $input.all();\nconst todaysItems = [];\n\nfor (const item of allItems) {\n  // Get the timestamp from the sheet and format it to match today's date format (YYYY-MM-DD).\n  const itemDate = new Date(item.json.Timestamp).toLocaleDateString('en-CA', { timeZone: 'Africa/Lagos' });\n\n  if (itemDate === today) {\n    todaysItems.push(item);\n  }\n}\n\n// Only return the items that were submitted today.\nreturn todaysItems;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        256,
+        1172
+      ],
+      "id": "acc421c7-17f4-4875-9de8-d6a2393425b6",
+      "name": "Filter today's summary report"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "da148f2d-a375-4e06-b8a1-225cebfc65e0",
+              "leftValue": "={{ $items.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        480,
+        1172
+      ],
+      "id": "dbdfb666-8da1-45bb-a70b-1a6bd7459b0b",
+      "name": "Confirm today's feedback"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1406209080636211281",
+          "mode": "list",
+          "cachedResultName": "Ai Agent server",
+          "cachedResultUrl": "https://discord.com/channels/1406209080636211281"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1406216468449988698",
+          "mode": "list",
+          "cachedResultName": "notification-alerts",
+          "cachedResultUrl": "https://discord.com/channels/1406209080636211281/1406216468449988698"
+        },
+        "content": "=🔔 **Daily Feedback Summary for {{ new Date().toLocaleDateString('en-GB', { timeZone: 'Africa/Lagos' }) }}**\n\n{{ $json.output }}\n\ncheck\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        1056,
+        1172
+      ],
+      "id": "cdd73a68-3011-4956-b0d5-97955e3d30f0",
+      "name": "Send a message4",
+      "webhookId": "f42f960f-efde-4d72-8a6f-1fa44fed604d",
+      "credentials": {
+        "discordOAuth2Api": {
+          "id": "8hR8IKq0EjWA3UeN",
+          "name": "Discord account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite-preview-06-17",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        776,
+        1396
+      ],
+      "id": "da090e40-4ab3-448b-a64a-d0ae7c36c7ae",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "uf9YTJ3rBqQerQ4W",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1qwZrwvgdy9FugvOHUAUcQY2UVjC6AyuN8J4pSSIMHF8",
+          "mode": "list",
+          "cachedResultName": "Feedback Intelligence Agent",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1qwZrwvgdy9FugvOHUAUcQY2UVjC6AyuN8J4pSSIMHF8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 82687534,
+          "mode": "list",
+          "cachedResultName": "Feedback Summary",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1qwZrwvgdy9FugvOHUAUcQY2UVjC6AyuN8J4pSSIMHF8/edit#gid=82687534"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        32,
+        1172
+      ],
+      "id": "ce22ffa9-7309-47fe-b615-716ef811a0cf",
+      "name": "Full summary-log",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "wXAfa4Y67s1bUqQ2",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are an analyst summarizing today's citizen feedback. Review all the feedback provided below and generate a single, concise report for a manager.\n\nThe report should highlight:\n1. The total number of feedback entries today.\n2. A summary of any recurring themes or critical issues (like bribery, long waits, or system failures).\n3. A list of any particularly positive feedback received.\n\nDo not analyze each entry one-by-one. Provide a single, combined summary.\n\nHere is all the feedback from today:\n{{ JSON.stringify($items) }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        704,
+        1172
+      ],
+      "id": "c42a6943-3fd5-4c35-a013-b4e7fd74101f",
+      "name": "Feedback Summary"
+    },
+    {
+      "parameters": {
+        "content": "## Feedback for the day",
+        "height": 432,
+        "width": 1632,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -336,
+        1108
+      ],
+      "typeVersion": 1,
+      "id": "2e10a9ae-5255-4830-90f8-1371d1be8f09",
+      "name": "Sticky Note"
+    }
+  ],
+  "connections": {
+    "Schedule Trigger (Daily)": {
+      "main": [
+        [
+          {
+            "node": "Full summary-log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter today's summary report": {
+      "main": [
+        [
+          {
+            "node": "Confirm today's feedback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Confirm today's feedback": {
+      "main": [
+        [
+          {
+            "node": "Feedback Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Feedback Summary",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Full summary-log": {
+      "main": [
+        [
+          {
+            "node": "Filter today's summary report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Feedback Summary": {
+      "main": [
+        [
+          {
+            "node": "Send a message4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "db6a6a071dfca2e0d35fcf3e9f98b59e5ea7c188360bda9a81a90f32d133305b"
+  }
+}
