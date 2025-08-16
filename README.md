@@ -1,8 +1,8 @@
 # 🧠 Feedback Intelligence System
 
-The **Feedback Intelligence System** is an AI-powered solution designed to automatically collect, analyze, and report on customer and citizen feedback. It empowers organizations—such as government agencies like **SERVICOM**, private companies, and service providers—to monitor service quality, identify recurring issues, and take proactive action based on real-time insights.
+The **Feedback Intelligence System** is an AI-powered solution designed to automatically collect, analyze, and report on customer and citizen feedback. It empowers organizations such as government agencies like **SERVICOM**, private companies, and service providers to monitor service quality, identify recurring issues, and take proactive action based on real-time insights.
 
-Built on **n8n** and integrated with **Google Sheets**, **Google Gemini**, and messaging platforms like **Telegram**, **Slack**, and **Discord**, this system transforms raw feedback into structured intelligence.
+Built on **n8n** and integrated with **Google Sheets**, **Google Gemini**, **Open Source AI** and messaging platforms like **Telegram**, **Slack**, **Discord** and **Whatsapp** this system transforms raw feedback into structured intelligence.
 
 ---
 
