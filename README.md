@@ -119,7 +119,7 @@ Triggered weekly and monthly.
 Built by **TOLUWALOPE JOHN OLUWALOWO**  
 GitHub: [CryptoLab-service](https://github.com/CryptoLab-service/)  
 Whatsapp: [07030739128](https://whatsapp.me/+2347030739128/)  
-Email: oluwalowojohn@gmail.com
+Email: oluwalowojohn@gmail.com  
 Location: Nigeria 🇳🇬
 
 > This project is actively maintained and open to contributions. Feel free to fork, improve, or collaborate.
