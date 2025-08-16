@@ -13,7 +13,9 @@ Built on **n8n** and integrated with **Google Sheets**, **Google Gemini**, **Ope
 - 🔔 Instant alerts for negative feedback
 - 🧠 AI-generated insights and suggestions
 - 📁 Google Sheets integration for data logging
-- 💬 Multi-platform notifications (Telegram, Slack, Discord)
+- 💬 Multi-platform notifications (Telegram, Slack, Discord, WhatsApp)
+- 📱 SMS alerts via Termii or Twilio
+- 🔗 OpenRouter support for multi-model LLM routing
 
 ---
 
@@ -34,6 +36,8 @@ Triggered whenever a new feedback entry is submitted via Google Sheets.
   - Telegram
   - Slack
   - Discord
+  - Whatsapp
+  - SMS
 
 ### 2. 📅 Daily Summary Report
 
@@ -67,22 +71,59 @@ Triggered weekly and monthly.
 - [n8n](https://n8n.io/) – Workflow automation
 - [Google Sheets](https://www.google.com/sheets/about/) – Data collection and logging
 - [Google Gemini](https://gemini.google.com/) – LLM for feedback analysis
+- [DeepSeek](https://chat.deepseek.com/) – LLM for feedback analysis
+- [OpenRouter](https://openrouter.ai/) – Multi-model LLM routing and experimentation
 - [Telegram](https://core.telegram.org/bots) – Alert delivery
 - [Slack](https://api.slack.com/) – Team notifications
 - [Discord](https://discord.com/developers/docs/intro) – Summary reporting
+- [WhatsApp Business](https://web.whatsapp.com/) – Feedback collection and alert delivery
+- 📱 SMS Gateway (Twilio or Termii) – Mobile alerts and citizen engagement
 
 ---
 
-## 💡 Future Enhancements
+## 🔮 Future Enhancements
 
-- 🔍 Add keyword-based filtering for urgent issues (e.g. “fraud”, “delay”, “harassment”)
-- 📍 Geo-tagging feedback to identify regional service gaps
-- 📊 Dashboard integration for real-time visualization
-- 🧾 PDF export of weekly/monthly reports
-- 🧠 Sentiment trend prediction using time-series modeling
-- 🗣️ Multilingual feedback support with translation layer
+- 🧠 **Advanced Sentiment and Topic Analysis**  
+  Move beyond basic sentiment categories by introducing a scale (e.g., -5 to +5) and dynamic topic modeling to uncover hidden issues.
+
+- ✅ **Automated Action Item Creation**  
+  Automatically create tasks in Trello, Jira, or Notion for highly negative feedback, ensuring complaints are tracked and resolved.
+
+- 🔗 **CRM and Support System Integration**  
+  Link feedback to customer profiles in CRM platforms for a complete view of user interactions and history.
+
+- 🌐 **Multi-Channel Data Ingestion**  
+  Expand beyond Google Sheets to ingest feedback from emails, social media, web forms, and voice transcripts.
+
+- 📊 **Predictive Analytics**  
+  Forecast service bottlenecks or emerging issues using historical feedback trends.
+
+- 📈 **Interactive Dashboard**  
+  Visualize feedback data in tools like Google Data Studio or Power BI for deeper analysis and filtering.
+
+- 🔁 **Feedback Loop Closure**  
+  Automatically follow up with users after issue resolution to confirm satisfaction and gather additional insights.
 
 ---
 
 ## 📂 Repository Structure
 
+/workflows ├── immediate-feedback.n8n.json ├── daily-summary.n8n.json └── weekly-analysis.n8n.json
+
+/docs └── report-samples/ ├── daily-summary.md └── weekly-analysis.md
+
+---
+
+## 📬 Contact & Contribution
+
+Built by **TOLUWALOPE JOHN OLUWALOWO**  
+GitHub: [CryptoLab-service](https://github.com/CryptoLab-service/)  
+Email: oluwalowojohn@gmail.com
+Whatsapp: [07030739128](https://whatsapp.me/+2347030739128/)
+Location: Nigeria 🇳🇬
+
+> This project is actively maintained and open to contributions. Feel free to fork, improve, or collaborate.
+
+---
+
+> Empowering smarter service delivery through intelligent feedback.
