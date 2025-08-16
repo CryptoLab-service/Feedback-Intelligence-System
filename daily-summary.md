@@ -2,9 +2,7 @@
 
 **Date:** August 16, 2025  
 **Total Feedback Entries:** 47
-
-## 📄 Report Samples
-These markdown files in /docs/report-samples/ serve as templates or examples of what your system generates.
+📌 This serve as templates or examples of what the Intelligence system generates.
 
 ---
 
